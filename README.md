@@ -155,6 +155,20 @@ TLS handshake는 https 연결을 위해 TCP handshake 이후에 발생합니다.
 </div>
 </details>
 
+<details>
+<summary>CORS에 대해서 설명해주세요</summary>
+<div markdown="1">       
+
+CORS는 Cross-Origin Resource Sharing으로 서로 다른 도메인 간 자원 공유를 말합니다.
+예를 들어 클라이언트 서버의 도메인 A에서 도메인 B인 WAS로 자원을 요청하여 받는 경우에 발생합니다.
+브라우저는 요청한 도메인과 받는 도메인이 다른 경우에 안전하지 않은 응답이라고 판단하여 이를 버리게 됩니다.
+
+이를 해결하려면, WAS에 응답을 보내줄 때 올바른 CORS 헤더를 추가하여 보내야 합니다.
+응답을 받는 클라이언트의 도메인을 헤더에 추가해줘야 합니다.
+
+</div>
+</details>
+
 ## 데이터베이스
 
 ## 자바
