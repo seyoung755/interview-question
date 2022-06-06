@@ -186,6 +186,17 @@ DBMS도 데이터베이스 테이블의 데이터를 일일이 가져오려면 r
 </div>
 </details>
 
+<details>
+<summary>인덱스를 사용하면 좋은 경우는 언제일까요?</summary>
+<div markdown="1">       
+
+인덱스의 성능은 Selectivity에 좌우됩니다. 인덱스로 조회한 결과가 너무 많으면, 결국은 조회한 결과를 모두 random access하게 된다.
+보통은 전체 레코드의 15~30% 이내로 조회될 때만 효과적으로 인덱스를 사용할 수 있다.
+조회 결과가 그 이상 넘어갈 때는 MySQL Optimizer가 내부적으로 그냥 full scan을 진행한다.
+그리고 인덱스를 실제로 잘 타고 있는지 쿼리 플랜을 활용하면 알 수 있다.
+
+</div>
+</details>
 
 ## 자바
 <details>
