@@ -170,6 +170,22 @@ CORS는 Cross-Origin Resource Sharing으로 서로 다른 도메인 간 자원 �
 </details>
 
 ## 데이터베이스
+<details>
+<summary>인덱스는 무엇이고 왜 사용하나요?</summary>
+<div markdown="1">       
+
+인덱스는 관계형 데이터베이스에서 테이블을 효과적으로 저장하기 위한 자료구조입니다. 테이블은 disk에 저장되는데, disk는 random I/O에 매우 지연이 발생하는 구조입니다.
+DBMS도 데이터베이스 테이블의 데이터를 일일이 가져오려면 random access가 많이 발생하여 시간이 오래 걸린다.
+인덱스의 목적은 random access를 줄여 데이터를 찾아오는 시간을 줄이는 데에 있습니다.
+
+기본적으로 MySQL에서는 기본적으로 B+ Tree 형태로 인덱스를 만듭니다. 칼럼의 값과 해당 레코드가 저장된 주소를 key-value로 삼아 인덱스를 만든다.
+
+장점으로는 목적에서 알 수 있듯이, SELECT 쿼리의 성능이 빨라집니다. 특히 범위 검색 연산을 수행하는 속도를 크게 향상시켜 줍니다.
+단점으로는 자료구조를 추가로 만들기 때문에 INSERT, UPDATE, DELETE 발생 시 인덱스가 없을 때보다 시간이 추가로 들게 됩니다.
+
+</div>
+</details>
+
 
 ## 자바
 <details>
