@@ -391,6 +391,87 @@ token 발급 시에 DB 인덱스값만 보내고, refresh token은 DB에 저장�
 </div>
 </details>
 
+<details>
+<summary>* RESTful 하다는 것은 무엇일까요?</summary>
+<div markdown="1">       
+
+https://www.youtube.com/watch?v=RP_f5dMoHFc
+
+REST가 등장한 역사는 어떻게 인터넷에서 정보를 공유할 것인가?에서 시작된다.
+정보들을 하이퍼텍스트로, html로 표현하고 식별자로 URI를 만들고, 전송 방법으로 HTTP라는 프로토콜을 만들었다.
+HTTP 1.0의 등장 이후 http가 깨지지 않고 어떻게 발전할 수 있을지 고민했다.
+
+HTTP Object Model이라는 이름으로 나온 기술은 Representational State Transfer이 된다. 
+
+그리고 API라는 것이 만들어지기 시작한다.
+먼저 RPC라는 프로토콜이 생기고, 이것은 이후 SOAP이 된다.
+플리커 API는 REST와 SOAP 버전의 두 가지 api를 공개했다.
+메세지 분량이 REST가 압도적으로 줄어들어, REST의 폭발적인 발전이 이뤄진다.
+
+2006년에는 AWS 의 자사 api 사용량이 REST가 85%에 육박할 정도로 독점적이 되었다.
+
+로이 필딩은 발전하는 REST 개념에 지속적으로 부정을 했다. 진짜 REST 아키텍쳐가 아니었다는 뜻이다.
+REST는 분산 하이퍼미디어 시스템(예: 웹)을 위한 아키텍쳐 스타일이다.
+
+아키텍쳐 스타일이란 제약조건의 집합이다. 제약조건을 모두 지켜야 REST를 따르고 있다고 말할 수 있다.
+REST를 구성하는 스타일은,
+- client-server
+- stateless
+- cache
+- uniform interface
+- layered system
+- code-on-demand (optional)
+
+### uniform interface의 제약조건
+- identification of resources
+- manipulation of resources through representations
+- __self-descriptive messages__
+- *hypermedia as the engine of application state*
+
+### Self-descriptive message
+`GET / HTTP/1.1` 이라는 요청 메시지가 있다고 하면, 이게 어디로 가는지 알 수 없다.
+그래서 Host 를 통해 어디로 가는지 적어줘야 비로소 self-descriptive 해진다.
+
+응답 또한 content-type 등의 정보를 통해 메세지를 보고 부가적인 정보 없이 해석이 가능해야 한다.
+
+### HATEOAS
+애플리케이션의 상태는 하이퍼 링크를 통해 전이되어야 한다.
+일반적인 게시글 페이지를 이동하는 형태가 이것을 만족한다고 할 수 있다.
+json으로 응답할 경우에도 Link를 통해 다른 상태로 갈 수 있는 하이퍼링크를 명시해줄 수 있다.
+
+### 왜 Uniform interface?
+- 독립적 진화를 하기 위해서!
+  - 서버와 클라이언트가 각각 독립적으로 진화한다.
+  - __서버의 기능이 변경되어도 클라이언트를 업데이트할 필요가 없다.__
+  - How do I improve HTTP without breaking the Web.
+  
+### 웹은 REST를 지키고 있다.
+- 웹 페이지를 변경했다고 해도 웹 브라우저를 업데이트할 필요는 없다.
+- 웹 브라우저를 업데이트했다고 웹 페이지를 변경할 필요도 없다.
+- HTTP 명세가 변경되어도 웹은 잘 동작한다.
+- HTML 명세가 변경되어도 웹은 잘 동작한다.
+
+한 마디로 요약하자면, 하이퍼 텍스트를 포함한 self-descriptive한 메시지의 uniform interface를 통해 리소스에 접근하는 API이다.
+
+시스템 전체를 통제 가능하거나, 진화에 관심이 없다면 굳이 REST를 따르지 않아도 된다.
+
+## REST를 만들기 힘들 이유
+우리가 사용하는 HTTP API에서는 json을 사용한다.
+json은 html에 비해 표준으로 정해진 것이 없다. html은 사용하는 태그의 종류가 모두 표준으로 명세되어있지만,
+json은 구체적인 key-value에 대해서는 표준으로 정하지 않는다. 그래서 우리는 API 문서를 통해 해석해야만 한다.
+
+그래서 json을 Self-descriptive하게 만들려면,
+1. media-type을 IANA에 등록한다.
+2. Profile을 통해 명세를 링크한다.
+
+HETEOAS를 만들려면,
+1. data에 직접 link를 넣는다.
+2. HTTP 헤더로 Link나 Location으로 표현한다.
+
+
+
+</div>
+</details>
 ---
 
 ### `*`가 붙은 내용은 이해가 더 필요한 내용입니다.
