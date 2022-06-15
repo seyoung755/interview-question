@@ -170,6 +170,45 @@ CORS는 Cross-Origin Resource Sharing으로 서로 다른 도메인 간 자원 �
 </div>
 </details>
 
+
+<details>
+<summary>비동기 이벤트 기반이란?</summary>
+<div markdown="1">       
+
+https://niklasjang.tistory.com/57
+https://happyer16.tistory.com/entry/대용량-트래픽을-감당하기-위한-Spring-WebFlux-도입
+
+일반적으로 Spring MVC는 synchoronous blocking I/O 기반의 구조로 실행된다.
+이는 하나의 I/O 작업이 수행될 때 스레드가 계속 점유된 상태로 기다리다가 완료되어서야 응답이 이루어지는 구조이다.
+즉, one-request-per-thread의 구조이다. 
+이는 유저가 많아졌을 때 스레드 개수의 한계 등으로 불리한 면이 있다.
+
+### Spring MVC
+Spring MVC에서는 Tomcat을 통해 요청이 관리된다. 클라이언트가 요청하면 스레드 풀에 있는 스레드를 매칭하여 서비스를 하고,
+현재 스레드 풀에 스레드가 모자라다면 Queue에서 대기하는 구조이다. 기본적으로 Tomcat은 200개의 Thread pool size를 가진다.
+만약, 동시 요청의 수가 이 스레드풀의 사이즈보다 많아지기 시작하면 사용자의 지연시간이 치솟을 것이다.
+이런 현상을 `Thread pool hell`이라 한다. 특정 작업이 지연을 일으키기 시작하면서 스레드 풀 반납이 늦어지고, 동시에 유저의 지연시간도 늘어나게 된다.
+지연을 일으키는 대표적인 작업은 DB, Network 작업 등의 I/O 작업이다. blocking 방식에서는 I/O가 처리될 때까지 스레드를 잡아두고 있기 때문에 
+이런 작업이 빈번하게 요청되는 경우에 Thread pool hell이 발생하기 쉽다.
+
+### Spring WebFlux
+Spring WebFlux는 이런 I/O로 인한 지연을 줄이기 위해 다른 구조를 제공한다.
+하나의 요청 당 하나의 스레드가 생성하는 것이 아니라 다수의 요청을 적은 Thread로 처리한다.
+Worker Thread의 기본 사이즈는 서버의 Core 개수로 설정이 되어있다. 
+
+스레드는 적지만 Non-blocking 형태로 효율적으로 스레드를 관리하기 때문에 동시에 많은 사용자가 있을 때 성능을 향상시킬 수 있다.
+물론 I/O 작업 중 하나라도 blocking 방식이 있다면, 결국 blocking이 발생하므로 말짱 도루묵이 될 수 있다.
+예를 들어 DB Connection 방식이 blocking이라면, 그 DB I/O가 종료될 때까지 스레드 하나가 blocking 될 것이다.
+MongoDB, REDIS 등의 NoSQL은 non-blocking DB connection을 지원한다고 한다.
+
+### 그럼 무조건 WebFlux?
+그럼 무조건 효율적인 WebFlux를 사용하는 것이 좋아보인다. 하지만 트래픽이 작을 때에는 MVC와 WebFlux 모두 일정한 성능을 보인다.
+다만 커넥션 풀 대비 많은 사용자가 발생하는 부분부터 WebFlux의 성능이 뛰어나다는 것이다.
+그리고 WebFlux와 같은 비동기 방식은 디버깅이 매우 힘들다는 단점이 있다. 생산성이나 난이도 측면에서 동기 방식인 MVC가 유리하다는 점도 고려해야 한다.
+
+</div>
+</details>
+
 ## 데이터베이스
 <details>
 <summary>인덱스는 무엇이고 왜 사용하나요?</summary>
