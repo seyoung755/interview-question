@@ -209,6 +209,27 @@ MongoDB, REDIS 등의 NoSQL은 non-blocking DB connection을 지원한다고 한
 </div>
 </details>
 
+<details>
+<summary> * Netty는 무엇이고 왜 사용할까요?</summary>
+<div markdown="1">       
+
+https://velog.io/@sihyung92/how-does-springboot-handle-multiple-requests
+https://www.youtube.com/watch?v=pu2Y4nVWixo
+
+Java의 전통적인 TCP 통신 방식은 `Socket` 라이브러리를 사용하는 방식이다.
+소켓을 생성하고 포트에 바인딩한 뒤, while문을 돌면서 요청을 받아들이고 요청이 들어오면 stream을 취득합니다.
+이런 식으로 구성했을 때 사용자가 많아지면 thread가 계속해서 늘어나게 되므로 장애의 원인이 되기 쉽습니다.
+
+Netty의 개념 중 Channel, EventLoop, EventLoopGroup 등의 요소를 가집니다.
+
+Channel은 I/O 작업을 수행하는 요소 또는 네트워크 연결입니다. 
+EventLoop는 Channel의 I/O를 처리하고 수명주기 동안 한 Thread에 바인딩됩니다.
+Channel은 생명 주기동안 하나의 EventLoop에 바인딩되며 EventLoop는 여러 Channel을 할당받아 처리할 수 있습니다.
+
+
+</div>
+</details>
+
 ## 데이터베이스
 <details>
 <summary>인덱스는 무엇이고 왜 사용하나요?</summary>
