@@ -428,6 +428,31 @@ compare하는 순간에 old value와 이미 수정된 값이 같은 현상입니
 </div>
 </details>
 
+<details>
+<summary>자바에서 싱글턴 패턴을 구현해보세요.</summary>
+<div markdown="1">       
+
+### 스레드 세이프하게 싱글턴을 구현하는 방법
+
+</div>
+</details>
+
+<details>
+<summary>자바의 String은 불변객체라고 하는데, 이 개념에 대해서 설명해주세요</summary>
+<div markdown="1">       
+
+
+</div>
+</details>
+
+<details>
+<summary>자바에는 참조형 변수가 있는데 왜 Call by reference가 없을까요?</summary>
+<div markdown="1">       
+
+
+</div>
+</details>
+
 ## Spring
 <details>
 <summary>* 스프링의 IoC, DI는 왜 할까?</summary>
@@ -633,6 +658,7 @@ HETEOAS를 만들려면,
 
 </div>
 </details>
+
 ---
 
 ## 설게 관련
