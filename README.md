@@ -120,6 +120,39 @@ T1은 파일을 읽어서 `Queue 1`에 등록합니다. T2는 루프를 돌면�
 </div>
 </details>
 
+<details>
+<summary>CPU 스케줄링 알고리즘에 대해서 소개해주세요.</summary>
+<div markdown="1">       
+
+
+
+</div>
+</details>
+
+<details>
+<summary>가상 메모리 기법에 대해서 설명해주세요.</summary>
+<div markdown="1">       
+
+
+</div>
+</details>
+
+<details>
+<summary>페이지 교체 알고리즘에 대해서 소개해주세요.</summary>
+<div markdown="1">       
+
+</div>
+</details>
+
+<details>
+<summary>운영체제에 나오는 스케줄링을 실제로 사용한다면 좋을 것 같은 예시가 있을까요?</summary>
+<div markdown="1">       
+
+
+
+</div>
+</details>
+
 ## 네트워크
 <details>
 <summary>UDP와 TCP의 차이점에 대해 설명해주세요</summary>
